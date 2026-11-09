@@ -1,0 +1,25 @@
+{
+  "name": "go2_cluttered_warehouse",
+  "description": "Three alternating warehouse shelf dividers, eight crates/pillars, and four boundary walls. Known floorplan A* supplies the global reference; live LiDAR drives SCAN local replanning.",
+  "bounds": [-1.2, 11.2, -3.6, 3.6],
+  "start": [0.0, 0.0],
+  "goal": [9.8, 0.0],
+  "route_clearance": 0.58,
+  "obstacles": [
+    {"name": "shelf_1", "shape": "box", "xy": [2.3, -1.35], "half": [0.25, 2.15], "height": 1.1},
+    {"name": "shelf_2", "shape": "box", "xy": [4.9, 1.35], "half": [0.25, 2.15], "height": 1.1},
+    {"name": "shelf_3", "shape": "box", "xy": [7.5, -1.35], "half": [0.25, 2.15], "height": 1.1},
+    {"name": "crate_1", "shape": "box", "xy": [0.8, 2.65], "half": [0.35, 0.35], "height": 0.7},
+    {"name": "crate_2", "shape": "box", "xy": [1.0, -2.6], "half": [0.35, 0.35], "height": 0.8},
+    {"name": "crate_3", "shape": "box", "xy": [3.6, 2.7], "half": [0.35, 0.3], "height": 0.8},
+    {"name": "crate_4", "shape": "box", "xy": [6.2, -2.7], "half": [0.35, 0.3], "height": 0.65},
+    {"name": "crate_5", "shape": "box", "xy": [8.9, 2.6], "half": [0.45, 0.35], "height": 0.8},
+    {"name": "post_1", "shape": "cylinder", "xy": [3.6, -2.5], "radius": 0.22, "height": 1.0},
+    {"name": "post_2", "shape": "cylinder", "xy": [6.2, 2.5], "radius": 0.22, "height": 1.0},
+    {"name": "post_3", "shape": "cylinder", "xy": [9.4, -2.3], "radius": 0.25, "height": 1.0},
+    {"name": "wall_n", "shape": "box", "xy": [5.0, 3.65], "half": [6.3, 0.1], "height": 1.0},
+    {"name": "wall_s", "shape": "box", "xy": [5.0, -3.65], "half": [6.3, 0.1], "height": 1.0},
+    {"name": "wall_w", "shape": "box", "xy": [-1.3, 0.0], "half": [0.1, 3.65], "height": 1.0},
+    {"name": "wall_e", "shape": "box", "xy": [11.3, 0.0], "half": [0.1, 3.65], "height": 1.0}
+  ]
+}

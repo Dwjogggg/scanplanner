@@ -1,0 +1,28 @@
+# Catkin-generated artifacts and machine-specific configuration
+catkin_ws/build/
+catkin_ws/devel/
+catkin_ws/install/
+catkin_ws/logs/
+catkin_ws/.catkin_tools/
+# Python and editor caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.vscode/
+.idea/
+# Runtime outputs, datasets, checkpoints and credentials
+runs/
+outputs/
+.env
+.env.*
+!.env.example
+*.bag
+*.mp4
+*.avi
+*.mkv
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.log
+.DS_Store

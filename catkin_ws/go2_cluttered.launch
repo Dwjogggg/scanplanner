@@ -1,0 +1,55 @@
+<launch>
+  <!-- Go2 floating-base locomotion in the cluttered warehouse; reference path mode. -->
+  <arg name="execute" default="false"/>
+  <param name="body_pose_topic" value="/test/odom"/>
+  <node if="$(arg execute)" pkg="scan_planner" type="scan_closed_loop_controller"
+        name="scan_closed_loop_controller" output="screen" required="true">
+    <remap from="cmd_vel" to="/scan_sim/cmd_vel"/>
+    <param name="time_forward" value="0.35"/>
+    <param name="heading_error_threshold" value="0.6"/>
+    <param name="kp_pos" value="1.2"/>
+    <param name="kp_yaw" value="2.2"/>
+    <param name="max_vx" value="0.4"/>
+    <param name="max_vy" value="0.25"/>
+    <param name="max_vyaw" value="0.7"/>
+    <param name="finish_dist" value="0.12"/>
+  </node>
+  <node pkg="scan_planner" type="scan_planner_node" name="scan_planner_node" output="screen" clear_params="true">
+    <remap from="/grid_map/body_pose" to="/test/odom"/>
+    <remap from="/grid_map/sensor_pose" to="/test/odom"/>
+    <remap from="/grid_map/cloud" to="/test/cloud"/>
+    <param name="grid_map/sensor_type" value="lidar"/>
+    <param name="grid_map/cloud_is_world" value="true"/>
+    <param name="grid_map/frame_id" value="world"/>
+    <param name="grid_map/resolution" value="0.10"/>
+    <param name="grid_map/sliding_map_size_x" value="10.0"/>
+    <param name="grid_map/sliding_map_size_y" value="10.0"/>
+    <param name="grid_map/sliding_map_size_z" value="5.0"/>
+    <param name="grid_map/map_sliding_thresh" value="0.2"/>
+    <param name="grid_map/collision_check_enabled" value="true"/>
+    <param name="grid_map/double_cylinder_radius" value="0.40"/>
+    <param name="grid_map/double_cylinder_offset" value="0.16"/>
+    <param name="grid_map/obstacles_inflation_z_up" value="0.12"/>
+    <!-- Rays originate ~0.30 m above the body; extrude their hits down to
+         the body-height planning slice even at short range. -->
+    <param name="grid_map/obstacles_inflation_z_down" value="0.65"/>
+    <param name="grid_map/ground_height" value="0.03"/>
+    <param name="grid_map/vis_height" value="0.60"/>
+    <param name="grid_map/p_hit" value="0.85"/><param name="grid_map/p_miss" value="0.30"/>
+    <param name="grid_map/p_min" value="0.12"/><param name="grid_map/p_max" value="0.98"/>
+    <param name="grid_map/p_occ" value="0.80"/><param name="grid_map/max_ray_length" value="5.0"/>
+    <param name="fsm/navi_mode" value="3"/>
+    <param name="fsm/thresh_replan" value="1.0"/><param name="fsm/thresh_no_replan" value="0.1"/>
+    <param name="fsm/finish_dist" value="0.25"/><param name="fsm/finish_dist_z" value="0.25"/>
+    <param name="fsm/planning_horizon" value="2.0"/><param name="fsm/emergency_time_" value="1.0"/>
+    <param name="fsm/fail_safe" value="true"/><param name="fsm/is_real_world" value="false"/>
+    <param name="manager/max_vel" value="0.4"/><param name="manager/max_acc" value="0.4"/>
+    <param name="manager/max_jerk" value="4.0"/><param name="manager/control_points_distance" value="0.2"/>
+    <param name="manager/feasibility_tolerance" value="0.5"/><param name="manager/planning_horizon" value="2.0"/>
+    <param name="optimization/lambda_smooth" value="1.0"/><param name="optimization/lambda_collision" value="1.0"/>
+    <param name="optimization/lambda_feasibility" value="0.1"/><param name="optimization/lambda_fitness" value="1.0"/>
+    <param name="optimization/dist0" value="0.25"/><param name="optimization/max_vel" value="0.4"/>
+    <param name="optimization/vel_tolerance" value="1.0"/><param name="optimization/max_acc" value="0.4"/>
+    <param name="optimization/acc_tolerance" value="1.0"/>
+  </node>
+</launch>
